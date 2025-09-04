@@ -121,7 +121,7 @@ nav ul li a:hover {
 /* قسم البطل (Hero) */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('help.png');
+                url('img/help.png');
     background-size: cover;        /* تغطية القسم بالكامل بالصورة */
     background-position: center;   /* توسيط صورة الخلفية */
     background-attachment: fixed;  /* تأثير Parallax */
