@@ -1,0 +1,821 @@
+:root {
+    --primary: #1a5276;    /* اللون الأساسي - أزرق داكن */
+    --primary-light: #2e86c1;  /* درجة فاتحة من اللون الأساسي */
+    --secondary: #2e86c1;  /* اللون الثانوي - أزرق متوسط */
+    --accent: #f39c12;     /* لون التمييز - ذهبي/برتقالي */
+    --accent-light: #f8c471; /* درجة فاتحة من لون التمييز */
+    --light: #f8f9fa;      /* لون الخلفية الفاتح */
+    --dark: #2c3e50;       /* لون النص الداكن */
+    --gray: #7f8c8d;       /* لون النص الرمادي */
+    --transition: all 0.4s ease; /* إعداد انتقالات متسقة */
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* ظل خفيف */
+    --radius: 10px;        /* نصف قطر الحدود للزوايا */
+}
+
+/* إعادة تعيين الهوامش والحشوات الافتراضية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* جعل الحشوات والحدود جزء من الأبعاد الكلية */
+    font-family: 'Tajawal', sans-serif; /* تعيين الخط الافتراضي */
+}
+
+/* تنسيق عام للصفحة */
+body {
+    background-color: #f5f5f5; /* لون خلفية فاتح */
+    color: #333;               /* لون النص الرئيسي */
+    line-height: 1.6;          /* ارتفاع السطر للنص */
+    overflow-x: hidden;        /* منع التمرير الأفقي */
+}
+
+/* حاوية المحتوى الرئيسية */
+.container {
+    width: 100%;               /* عرض كامل */
+    max-width: 1200px;         /* أقصى عرض للمحتوى */
+    margin: 0 auto;            /* توسيط الحاوية */
+    padding: 0 20px;           /* حشوة أفقية */
+}
+
+/* تنسيق الهيدر */
+header {
+    color: white;
+    position: absolute;
+    width: 100%;               /* عرض كامل */
+    top: 0;                    /* في أعلى الصفحة */
+    z-index: 1000;             /* ضمان بقاء الهيدر فوق المحتوى */
+}
+
+/* تخطيط حاوية الهيدر */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* المسافة بين الشعار والتنقل */
+    align-items: center;       /* توسيط العناصر عمودياً */
+    padding: 15px 0;           /* حشوة رأسية */
+}
+
+/* تنسيق الشعار */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 120px;             /* ارتفاع صورة الشعار */
+    margin-right: 10px;        /* هامش أيمن للتباعد في التخطيط RTL */
+}
+
+.logo h1 {
+    color: var(--primary);     /* لون النص باستخدام المتغير */
+    font-size: 1.8rem;         /* حجم خط كبير للشعار */
+    margin-right: 10px;        /* هامش أيمن للتخطيط RTL */
+}
+
+.logo span {
+    color: var(--accent);      /* لون التمييز لجزء من الشعار */
+}
+
+/* تنسيق التنقل */
+nav ul {
+    display: flex;
+    list-style: none;     
+         /* إزالة تنسيق القائمة الافتراضي */
+}
+
+nav ul li {
+    margin-left: 25px;         /* المسافة بين عناصر التنقل */
+}
+
+nav ul li a {
+    text-decoration: none;     /* إزالة التزيين من الروابط */
+    color : rgb(216, 208, 208);        /* لون النص الداكن */
+    font-weight: 500;          /* سمك خط متوسط */
+    font-size: 27px;
+    transition: color 0.3s;    /* تأثير انتقال سلس للون */
+}
+
+nav ul li a:hover {
+    color: var(--primary);     /* تغيير اللون عند المرور */
+}
+
+/* تنسيق أزرار الحث على الإجراء */
+.cta-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light)); /* خلفية متدرجة */
+    color: white;               /* لون النص */
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;        /* زوايا دائرية */
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition); /* تأثير انتقال */
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(26, 82, 118, 0.3); /* ظل خفيف */
+}
+
+.cta-button:hover {
+    transform: translateY(-3px); /* تحريك طفيف إلى الأعلى */
+    box-shadow: 0 6px 15px rgba(26, 82, 118, 0.4); /* زيادة الظل */
+    background: linear-gradient(135deg, var(--primary-light), var(--primary)); /* عكس التدرج */
+}
+
+/* قسم البطل (Hero) */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('help.png');
+    background-size: cover;        /* تغطية القسم بالكامل بالصورة */
+    background-position: center;   /* توسيط صورة الخلفية */
+    background-attachment: fixed;  /* تأثير Parallax */
+    height: 100vh;                 /* ارتفاع كامل للشاشة */
+    display: flex;
+    align-items: center;           /* توسيط المحتوى عمودياً */
+    color: white;
+    text-align: center;
+    padding-top: 80px;             /* تعويض للهيدر الثابت */
+}
+
+/* حاوية محتوى البطل */
+.hero-content {
+    max-width: 800px;      /* أقصى عرض للمحتوى */
+    margin: 0 auto;        /* توسيط الحاوية */
+    animation: fadeInUp 1s ease; /* تأثير ظهور من الأسفل */
+}
+
+.hero h2 {
+    font-size: 3rem;       /* حجم خط كبير للعنوان */
+    margin-bottom: 20px;   /* هامش سفلي */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* ظل للنص */
+}
+
+.hero p {
+    font-size: 1.2rem;     /* حجم خط slightly larger */
+    margin-bottom: 30px;   /* هامش سفلي */
+    line-height: 1.8;      /* ارتفاع السطر */
+}
+
+
+/* قسم الميزات */
+.features {
+    padding: 80px 0;       /* حشوة رأسية */
+    background-color: rgb(238, 236, 236);
+}
+
+/* عنوان القسم */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;   /* هامش سفلي */
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;   /* هامش سفلي */
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.section-title p {
+    color: var(--gray);
+    max-width: 700px;      /* أقصى عرض للفقرة */
+    margin: 30px auto 0;   /* هوامش وتوسيط */
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* تخطيط شبكة الميزات */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* شبكة متجاوبة */
+    gap: 30px;             /* المسافة بين عناصر الشبكة */
+}
+
+/* بطاقة الميزة الفردية */
+.feature-card {
+    background-color: var(--light);
+    border-radius: var(--radius); /* زوايا دائرية */
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition); /* تأثير انتقال */
+    box-shadow: var(--shadow);    /* ظل خفيف */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.feature-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    transition: var(--transition);
+    z-index: -1;
+    opacity: 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);  /* تحريك البطاقة لأعلى */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* زيادة الظل */
+    color: white;
+}
+
+.feature-card:hover:before {
+    height: 100%;
+    opacity: 1;
+}
+
+.feature-card:hover .feature-icon {
+    background-color: rgb(255, 255, 255);
+    color: var(--primary);
+}
+
+.feature-card:hover h3,
+.feature-card:hover p {
+    color: white;
+}
+
+/* أيقونة الميزة */
+.feature-icon {
+    background-color: var(--primary);
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;    /* شكل دائري */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;   /* توسيط وإضافة هامش سفلي */
+    font-size: 1.8rem;     /* حجم الأيقونة */
+    transition: var(--transition); /* تأثير انتقال */
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--dark);
+    transition: var(--transition); /* تأثير انتقال */
+}
+
+.feature-card p {
+    color: var(--gray);
+    transition: var(--transition); /* تأثير انتقال */
+}
+
+/* قسم الخدمات مع تصميم Zig Zag الجديد */
+.services {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* خلفية متدرجة */
+}
+
+.service-category {
+    display: flex;              /* استخدام تخطيط flex */
+    margin-bottom: 70px;        /* هامش سفلي بين العناصر */
+    opacity: 0;                 /* إخفاء العنصر في البداية للحركة */
+    transform: translateY(30px); /* تحريك العنصر لأسفل للحركة */
+    transition: var(--transition); /* تأثير انتقال سلس */
+}
+
+.service-category.visible {
+    opacity: 1;                 /* إظهار العنصر */
+    transform: translateY(0);   /* إعادة العنصر إلى مكانه */
+}
+
+.service-category:nth-child(odd) {
+    flex-direction: row;        /* اتجاه الصف (صورة على اليسار، محتوى على اليمين) */
+}
+
+.service-category:nth-child(even) {
+    flex-direction: row-reverse; /* عكس اتجاه الصف (صورة على اليمين، محتوى على اليسار) */
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+}
+
+.service-icon {
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(135deg, rgb(71, 69, 69), var(--primary-light)); /* خلفية متدرجة */
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    color: rgb(0, 0, 0);
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3); /* ظل خفيف */
+}
+
+.service-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.service-text {
+    padding: 20px;
+}
+
+.service-image {
+    border-radius: var(--radius); /* زوايا دائرية */
+    overflow: hidden;
+    box-shadow: var(--shadow);    /* ظل خفيف */
+    position: relative;
+    height: 400px;
+}
+
+.service-image:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 82, 118, 0.2), rgba(46, 134, 193, 0.2));
+    z-index: 1;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.service-image:hover:before {
+    opacity: 1;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.service-image:hover img {
+    transform: scale(1.05); /* تكبير طفيف للصورة */
+}
+
+.service-list {
+    margin-top: 20px;
+}
+
+.service-list h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    position: relative;
+    padding-right: 15px;
+}
+
+.service-list h3:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+}
+
+.service-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.service-list li:hover {
+    padding-right: 10px;
+    color: var(--primary);
+}
+
+.service-list li:before {
+    content: "→";
+    color: var(--accent);
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 1.2rem;
+}
+
+/* قسم المشاريع */
+.projects {
+    padding: 80px 0;
+    background-color: white;
+}
+
+/* تخطيط شبكة المشاريع */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* بطاقة المشروع الفردية */
+.project-card {
+    background-color: white;
+    border-radius: var(--radius); /* زوايا دائرية */
+    overflow: hidden;
+    box-shadow: var(--shadow);    /* ظل خفيف */
+    transition: var(--transition); /* تأثير انتقال */
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* تحريك البطاقة لأعلى */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* زيادة الظل */
+}
+
+/* حاوية صورة المشروع */
+.project-img {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-img:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    z-index: 1;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.project-card:hover .project-img:before {
+    opacity: 1;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.1); /* تكبير الصورة */
+}
+
+/* معلومات المشروع */
+.project-info {
+    padding: 25px;
+    position: relative;
+}
+
+.project-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    color: var(--dark);
+}
+
+.project-info p {
+    color: var(--gray);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+/* قسم الاتصال */
+.contact {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+/* تخطيط حاوية الاتصال */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--primary);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-info h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+}
+
+.contact-details {
+    margin-bottom: 40px;
+}
+
+.contact-details p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.contact-details i {
+    margin-left: 15px;
+    color: var(--primary);
+    width: 25px;
+    height: 25px;
+    background: rgba(26, 82, 118, 0.1);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* تنسيق نموذج الاتصال */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(26, 82, 118, 0.2);
+    outline: none;
+}
+
+.contact-form textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* تذييل الصفحة */
+footer {
+    background: linear-gradient(to right, var(--dark), #243342); /* خلفية متدرجة */
+    color: white;
+    padding: 70px 0 20px;
+}
+
+/* تخطيط حاوية التذييل */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+.footer-col p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.footer-col ul li a:hover {
+    color: white;
+    transform: translateX(-5px);
+}
+
+/* أيقونات وسائل التواصل الاجتماعي */
+.social-icons {
+    display: flex;
+    margin-top: 25px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-left: 12px;
+    color: white;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.footer-col form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col input {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+
+/* قسم حقوق النشر */
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* زر العودة إلى الأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--primary-light);
+    transform: translateY(-5px);
+}
+
+/* التجاوب مع الشاشات المختلفة */
+@media (max-width: 968px) {
+    .service-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-image {
+        order: -1;
+        height: 350px;
+    }
+    
+    nav ul {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* تكديس عناصر الهيدر عمودياً */
+    }
+    
+    .logo-img {
+        height: 70px;
+        margin-bottom: 15px;
+    }
+    
+    nav ul {
+        margin-top: 20px;
+        flex-wrap: wrap;       /* السماح بعناصر التنقل بالالتفاف */
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px 10px;   /* تعديل التباعد للجوال */
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;     /* حجم عناوين أصغر على الجوال */
+    }
+    
+    .hero p {
+        font-size: 1rem;       /* نص أصغر على الجوال */
+    }
+    
+    .service-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .service-icon {
+        margin: 0 0 20px 0;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-col h4::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .feature-card, .service-category {
+        padding: 25px 20px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
