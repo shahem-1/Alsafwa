@@ -280,13 +280,13 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-    // إحداثيات الشركة (مثال: جدة)
+    // إحداثيات الشركة
     var companyLocation = [21.6559864, 39.1244659];
 
     // إنشاء الخريطة
     var map = L.map('map').setView(companyLocation, 13);
 
-    // إضافة طبقة الخريطة (من OpenStreetMap)
+    // إضافة طبقة الخريطة 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
